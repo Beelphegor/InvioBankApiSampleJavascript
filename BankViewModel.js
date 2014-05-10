@@ -5,10 +5,8 @@
     var paymentsProcessed = ko.observableArray();
     var remittances = ko.observableArray();
     var remittancesProcessed = ko.observableArray();
-    var loading = ko.observable();
-
+    
     var getRemittances = function () {
-        loading(true);
         remittances.removeAll();
         apiClient.Remittances.GetAll()
             .then(function (response) {
@@ -18,14 +16,12 @@
                     });
                     remittances.push(r);
                 });
-                loading(false);
             });
     };
 
     getRemittances();
 
     var getPayments = function (thisDate) {
-        loading(true);        
         payments.removeAll();
         apiClient.Payments.GetAllForDate(thisDate)
             .then(function (response) {
@@ -36,7 +32,6 @@
                     });
                     payments.push(p);
                 });
-                loading(false);
             });
     };
 
@@ -99,7 +94,6 @@
         Remittances: remittances,
         ProcessRemittance: processRemittance,
         FailRemittance: failRemittance,
-        ProcessedRemittances: remittancesProcessed,
-        Loading: loading
+        ProcessedRemittances: remittancesProcessed        
     };
 };
