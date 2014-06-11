@@ -5,7 +5,34 @@
     var paymentsProcessed = ko.observableArray();
     var remittances = ko.observableArray();
     var remittancesProcessed = ko.observableArray();
-    
+    var pendingAccounts = ko.observableArray();
+
+    var getPendingAccounts = function () {
+        pendingAccounts.removeAll();
+        apiClient.PendingAccounts.GetAll()
+            .then(function (response) {
+                $.each(response.approvalRequests, function (index, r) {
+                    r = $.extend({}, r, {
+                        processing: ko.observable(false),
+                    });
+                    pendingAccounts.push(r);
+                });
+            });
+    };
+
+    getPendingAccounts();
+
+    var approvedAccounts = function(pendingAccount) {
+        var reference = prompt("Transaction Reference #");
+        apiClient.PendingAccounts.ApprovedAcounts(pendingAccount.bankAccount.id, reference).done(getPendingAccounts);
+    };
+
+    var denyAccounts = function (pendingAccount) {
+        var reference = prompt("Transaction Reference #");
+        var reason = prompt("Reason for failure");
+        apiClient.PendingAccounts.DenialAccount(pendingAccount.bankAccount.id, reason, reference).done(getPendingAccounts);
+    };
+
     var getRemittances = function () {
         remittances.removeAll();
         apiClient.Remittances.GetAll()
@@ -85,6 +112,8 @@
         });
     };
 
+
+
     return {
         Date: date,
         Payments: payments,
@@ -94,6 +123,9 @@
         Remittances: remittances,
         ProcessRemittance: processRemittance,
         FailRemittance: failRemittance,
-        ProcessedRemittances: remittancesProcessed        
+        ProcessedRemittances: remittancesProcessed,
+        PendingAccounts: pendingAccounts,
+        ApprovedAccounts: approvedAccounts,
+        DenyAccounts: denyAccounts
     };
 };
