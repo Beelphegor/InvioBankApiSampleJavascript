@@ -41,6 +41,7 @@
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="#payments">Pagos</a></li>
                         <li><a href="#remittances">Remesas</a></li>
+                        <li><a href="#PendingAccounts">Cuentas Pendientes</a></li>
                         <li><a href="#help">Ayuda</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -162,7 +163,33 @@
                     </tbody>
                 </table>
             </div>
-
+            
+            
+            <h2 id="H1">Cuentas Pendientes</h2>
+            
+            <table class="tabular">
+                <thead>
+                    <tr>
+                        <th>Cuenta de banco</th>
+                        <th>Status</th>
+                        <th>Ultima accion</th>                        
+                        <th>Ultima referencia de accion</th>
+                        <th>Ultima razon de accion</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: PendingAccounts">
+                    <tr>
+                        <td><span data-bind="html: bankAccount.accountNumber"></span></td>
+                        <td><span data-bind="html: status"></span></td>
+                        <td><span data-bind="html: lastActionTime"></span></td>                        
+                        <td><span data-bind="html: lastActionReference"></span></td>
+                        <td><span data-bind="html: lastActionReason"></span></td>    
+                        <td><button data-bind="visible: !processing(), click: $parent.ApprovedAccounts">Aprobar</button></td>
+                        <td><button data-bind="visible: !processing(), click: $parent.DenyAccounts">Denegar</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div><!-- /.container -->
 
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"> </script>
