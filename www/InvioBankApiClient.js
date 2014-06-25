@@ -82,6 +82,9 @@
                     },
                     type: 'PUT'
                 });
+            },
+            Details: function(approvalRequestId) {
+                return $.get(baseUrl + "/bankAccountApprovalRequests/" + approvalRequestId, { token: token });
             }
         }
 
