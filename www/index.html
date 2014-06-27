@@ -187,6 +187,20 @@
                         <td><span data-bind="html: lastActionReason"></span></td>    
                         <td><button data-bind="visible: !processing(), click: $parent.ApprovedAccounts">Aprobar</button></td>
                         <td><button data-bind="visible: !processing(), click: $parent.DenyAccounts">Denegar</button></td>
+                        <td><button data-bind="visible: !processing(), click: $parent.ShowDetails">Detalles</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2 id="H2">Informacion Adicional</h2>
+            
+            <table class="tabular">
+                <tbody data-bind="foreach: Object.keys(CurrentDetails().items)">
+                    <tr>
+                        <!-- ko if: $data !== '$type' -->
+                        <td><span data-bind="html: $data"></span></td>
+                        <td><span data-bind="html: $parent.CurrentDetails().items[$data]"></span></td>
+                        <!-- /ko -->
                     </tr>
                 </tbody>
             </table>
