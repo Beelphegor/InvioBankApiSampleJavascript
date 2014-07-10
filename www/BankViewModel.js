@@ -7,7 +7,8 @@
     var remittancesProcessed = ko.observableArray();
     var pendingAccounts = ko.observableArray();
     var currentDetails = ko.observable({items: []});
-    
+    var remittanceDetails = ko.observable();
+
     var getPendingAccounts = function () {
         pendingAccounts.removeAll();
         apiClient.PendingAccounts.GetAll()
@@ -108,6 +109,10 @@
         });
     };
 
+    var viewRemittanceDetails = function(remittance){
+        remittanceDetails(remittance);
+    };
+
     var processRemittance = function (remittance) {
         remittance.processing(true);
         var reference = prompt("Transaction Reference #");
@@ -133,6 +138,8 @@
         ApprovedAccounts: approvedAccounts,
         DenyAccounts: denyAccounts,
         ShowDetails: showDetails,
-        CurrentDetails: currentDetails
+        CurrentDetails: currentDetails,
+        ViewRemittanceDetails: viewRemittanceDetails,
+        RemittanceDetails: remittanceDetails
     };
 };
