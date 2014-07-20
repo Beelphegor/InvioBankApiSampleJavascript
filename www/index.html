@@ -196,14 +196,52 @@
             <div data-bind="visible: CurrentDetails">
                 <h2 id="H2">Informacion Adicional</h2>
                 
-                <table class="tabular">
-                    <tbody data-bind="foreach: Object.keys(CurrentDetails().items)">
+                <table class="tabular" data-bind="with: CurrentDetails()" style="margin-bottom: 50px">
+                    <tbody>
+                        <tr>
+                            <td><span>Numero de cuenta</span></td>
+                            <td><span data-bind="html: bankAccount.accountNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Fecha de nacimiento</span></td>
+                            <td><span data-bind="html: moment(bankAccount.birthDate).format('YYYY-MM-DD')"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Numero de celular</span></td>
+                            <td><span data-bind="html: bankAccount.cellPhoneNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Nombre completo</span></td>
+                            <td><span data-bind="html: bankAccount.fullName"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Direccion de casa</span></td>
+                            <td><span data-bind="html: bankAccount.homeAddress"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Numero de identidad</span></td>
+                            <td><span data-bind="html: bankAccount.idNumber"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Nacionalidad</span></td>
+                            <td><span data-bind="html: bankAccount.nationality"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Lugar de nacimiento</span></td>
+                            <td><span data-bind="html: bankAccount.placeOfBirth"></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>Sexo</span></td>
+                            <td><span data-bind="html: bankAccount.sex"></span></td>
+                        </tr>
+                        <!-- ko foreach: Object.keys(items) -->
                         <tr>
                             <!-- ko if: $data !== '$type' -->
-                            <td><span data-bind="html: $data"></span></td>
-                            <td><span data-bind="html: $parent.CurrentDetails().items[$data]"></span></td>
+                            <td><span data-bind="html: $root.humanize($data)"></span></td>
+                            <td><span data-bind="html: $parent.items[$data]"></span></td>
                             <!-- /ko -->
                         </tr>
+                        <!-- /ko -->
                     </tbody>
                 </table>
             </div>

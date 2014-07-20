@@ -6,7 +6,7 @@
     var remittances = ko.observableArray();
     var remittancesProcessed = ko.observableArray();
     var pendingAccounts = ko.observableArray();
-    var currentDetails = ko.observable({items: []});
+    var currentDetails = ko.observable();
     var remittanceDetails = ko.observable();
 
     var getPendingAccounts = function () {
@@ -124,6 +124,15 @@
         });
     };
 
+    var humanize = function(fieldName) {
+        return fieldName
+            .replace(/([A-Z])/g, ' $1')
+            .replace(/(\w+)/g, function (match) {
+                return match.charAt(0).toLowerCase() + match.slice(1);
+            })
+            .replace(/^./, function (str) { return str.toUpperCase(); });
+    };
+
     return {
         Date: date,
         Payments: payments,
@@ -140,6 +149,7 @@
         ShowDetails: showDetails,
         CurrentDetails: currentDetails,
         ViewRemittanceDetails: viewRemittanceDetails,
-        RemittanceDetails: remittanceDetails
+        RemittanceDetails: remittanceDetails,
+        humanize: humanize
     };
 };
