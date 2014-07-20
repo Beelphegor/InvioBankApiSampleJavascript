@@ -2,8 +2,11 @@
 
     var token = "52644e86-2b8f-43a7-8a42-af9065aa4014";
     var bankId = "occidente";
-    //var baseUrl = "http://inviomobileapi.apphb.com/bank/"+bankId;
-    var baseUrl = "http://localhost:38397/bank/" + bankId;
+    
+    var baseUrl = "http://inviomobileapi.apphb.com/bank/"+bankId;
+    if (window.location.hostname === "localhost") {
+        baseUrl = "http://localhost:38397/bank/" + bankId;
+    }
 
     return {
         Payments: {
