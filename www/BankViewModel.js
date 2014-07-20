@@ -26,13 +26,13 @@
 
     var approvedAccounts = function(pendingAccount) {
         var reference = prompt("Transaction Reference #");
-        apiClient.PendingAccounts.ApprovedAcounts(pendingAccount.bankAccount.id, reference).done(getPendingAccounts);
+        apiClient.PendingAccounts.ApprovedAcounts(pendingAccount.id, reference).done(getPendingAccounts);
     };
 
     var denyAccounts = function (pendingAccount) {
         var reference = prompt("Transaction Reference #");
         var reason = prompt("Reason for failure");
-        apiClient.PendingAccounts.DenialAccount(pendingAccount.bankAccount.id, reason, reference).done(getPendingAccounts);
+        apiClient.PendingAccounts.DenialAccount(pendingAccount.id, reason, reference).done(getPendingAccounts);
     };
     
     var showDetails = function (approvalRequest) {
