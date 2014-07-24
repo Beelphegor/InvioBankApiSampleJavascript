@@ -57,11 +57,11 @@
             <table class="tabular">
                 <thead>
                     <tr>
-                        <th>Payment Description</th>
-                        <th>Amount</th>
-                        <th>Desired Date</th>
-                        <th>Origin Account Number</th>
-                        <th>Destination</th>
+                        <th>Descripcion del pago</th>
+                        <th>Cantidad</th>
+                        <th>Fecha del pago</th>
+                        <th>Cuenta bancaria de origen</th>
+                        <th>Destino</th>
                         <th></th>
                         <th></th>
                     </tr>
@@ -71,7 +71,7 @@
                         <td><span data-bind="html: description"></span></td>
                         <td><span data-bind="html: amount"></span></td>
                         <td><span data-bind="html: paymentDateFormatted"></span></td>
-                        <td><span data-bind="html: originBankAccount.number"></span></td>
+                        <td><span data-bind="html: originBankAccount.accountNumber"></span></td>
                         <td><span data-bind="html: destination.description"></span></td>
                         <td><button data-bind="visible: !processing(), click: $parent.ProcessPayment">Exito</button></td>
                         <td><button data-bind="visible: !processing(), click: $parent.FailPayment">Error</button></td>
@@ -85,13 +85,13 @@
                 <table class="tabular">
                     <thead>
                         <tr>
-                            <th>Payment Description</th>
-                            <th>Amount</th>
-                            <th>Desired Date</th>
-                            <th>Origin Account Number</th>
-                            <th>Destination</th>   
+                            <th>Descripcion del pago</th>
+                            <th>Cantidad</th>
+                            <th>Fecha de pago</th>
+                            <th>Cuenta de origen</th>
+                            <th>Destino</th>   
                             <th>Estado</th>                     
-                            <th>Reference</th>
+                            <th>Referencia</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -115,18 +115,18 @@
             <table class="tabular">
                 <thead>
                     <tr>
-                        <th>Destination Account</th>
-                        <th></th>
-                        <th>Amount</th>                        
-                        <th>Submitted</th>
+                        <th>Cuenta de destino</th>
+                        <th>Propietario</th>
+                        <th>Cantidad</th>                        
+                        <th>Fecha</th>
                         <th></th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: Remittances">
                     <tr>
-                        <td><span data-bind="html: bankAccount.description"></span></td>
-                        <td><span data-bind="html: bankAccount.number"></span></td>
+                        <td><span data-bind="html: bankAccount.accountNumber"></span></td>
+                        <td><span data-bind="html: bankAccount.fullName"></span></td>
                         <td><span data-bind="html: amount"></span></td>                        
                         <td><span data-bind="html: dateSubmitted"></span></td>   
                         <td><button data-bind="click: $parent.ViewRemittanceDetails">Detalles</button></td>                           
