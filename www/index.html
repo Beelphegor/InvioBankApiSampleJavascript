@@ -57,7 +57,7 @@
             <table class="tabular">
                 <thead>
                     <tr>
-                        <th>Descripcion del pago</th>
+                        <th>Tipo de pago</th>
                         <th>Cantidad</th>
                         <th>Fecha del pago</th>
                         <th>Cuenta bancaria de origen</th>
@@ -68,6 +68,7 @@
                 </thead>
                 <tbody data-bind="foreach: Payments">
                     <tr>
+                        <td><span data-bind="html: destination.serviceId"></span></td>
                         <td><span data-bind="html: amount"></span></td>
                         <td><span data-bind="html: paymentDateFormatted"></span></td>
                         <td><span data-bind="html: originBankAccount.accountNumber"></span></td>
@@ -84,26 +85,24 @@
                 <table class="tabular">
                     <thead>
                         <tr>
-                            <th>Descripcion del pago</th>
+                            <th>Tipo de pago</th>
                             <th>Cantidad</th>
                             <th>Fecha de pago</th>
                             <th>Cuenta de origen</th>
                             <th>Destino</th>   
                             <th>Estado</th>                     
                             <th>Referencia</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody data-bind="foreach: ProcessedPayments">
                         <tr>
-                            <td><span data-bind="html: description"></span></td>
+                            <td><span data-bind="html: destination.serviceId"></span></td>
                             <td><span data-bind="html: amount"></span></td>
                             <td><span data-bind="html: paymentDateFormatted"></span></td>
-                            <td><span data-bind="html: originBankAccount.number"></span></td>
+                            <td><span data-bind="html: originBankAccount.accountNumber"></span></td>
                             <td><span data-bind="html: destination.description"></span></td>                        
                             <td><span data-bind="html: status"></span></td>                        
                             <td><span data-bind="html: reference"></span></td>  
-                            <td><span data-bind="html: reason"></span></td>  
                         </tr>
                     </tbody>
                 </table>
