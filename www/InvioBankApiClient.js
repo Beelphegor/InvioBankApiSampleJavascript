@@ -1,7 +1,7 @@
 ﻿var ApiClient = function() {
 
-    var token = "52644e86-2b8f-43a7-8a42-af9065aa4014";
-    var bankId = "occidente";
+    var token = "ff70e67a-4bfa-4737-8fdc-fb1774d3ded2";
+    var bankId = "dummybank";
     
     var baseUrl = "http://inviomobileapi.apphb.com/bank/"+bankId;
     if (window.location.hostname === "localhost") {
